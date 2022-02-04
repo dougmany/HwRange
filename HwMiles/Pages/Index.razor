@@ -1,0 +1,202 @@
+﻿@page "/"
+@inject HttpClient Http
+
+<PageTitle>Index</PageTitle>
+
+<h1>Highway EV Range calculator</h1>
+
+<p>
+Want to compare EV range values  then you have come to the right place.  Just click on the Calulator link in the menu and select you cars.
+</p>
+
+@if (vehicles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (vParams.Years.Count > 0)
+    {
+        <p>
+            <label>Year</label>
+            <select value="@vParams.Year" @onchange="@GetMakes">
+                @foreach (var item in vParams.Years)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </p>
+    }
+
+    @if (vParams.Makes.Count > 0)
+    {
+        <p>
+            <label>Makes</label>
+            <select value="@vParams.Make" @onchange="@GetModels">
+                @foreach (var item in vParams.Makes)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </p>
+    }
+
+    @if (vParams.Models.Count > 0)
+    {
+        <p>
+            <label>Makes</label>
+            <select value="@vParams.Model" @onchange="@GetModelOptions">
+                @foreach (var item in vParams.Models)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </p>
+    }
+
+    @if (vParams.ModelOptions.Count > 0)
+    {
+        <p>
+            <label>Makes</label>
+            <select @bind="vParams.VehicleID">
+                @foreach (var item in vParams.ModelOptions)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </p>
+
+    }
+
+    @if (newName != "")
+    {
+        <p>
+            <label>
+                @newName
+            </label>
+        </p>
+    }
+    <p>
+        <button class="btn btn-primary" @onclick="AddVehicle">Add</button>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th @onclick="@(() => SortTable("year"))">Year</th>
+                <th @onclick="@(() => SortTable("make"))">Make</th>
+                <th @onclick="@(() => SortTable("model"))">Model</th>
+                <th @onclick="@(() => SortTable("highwayEover100"))">HW kWh/mi</th>
+                <th @onclick="@(() => SortTable("UsableBattery"))">Usable Battery</th>
+                <th @onclick="@(() => SortTable("CalculatedRange"))">Calculated Range</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
+            {
+                <tr>
+                    <td>@vehicle.value.year.</td>
+                    <td>@vehicle.value.make.</td>
+                    <td>@vehicle.value.model</td>
+                    <td>@vehicle.value.highwayEover100</td>
+                    <td><input @bind=@vehicle.value.UsableBattery /></td>
+                    <td>@vehicle.value.CalculatedRange</td>
+                    <td><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private bool isSortedAscending;
+    private string activeSortColumn;
+
+    private List<Vehicle> vehicles;
+    private String newId = "44725";
+    private String newName = "";
+    private VehicleParameters vParams = new VehicleParameters();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (vehicles == null)
+        {
+            vehicles = new List<Vehicle>();
+        }
+        Http.DefaultRequestHeaders.Add("accept", "application/json ");
+
+        MenuItems menuItems = await Http.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/year");
+        vParams.Years = menuItems.MenuItem.ToList();
+
+    }
+
+    private async Task AddVehicle()
+    {
+        Vehicle vehicle = await Http.GetFromJsonAsync<Vehicle>($"ws/rest/vehicle/{newId}");
+        vehicles.Add(vehicle);
+    }
+
+    private async Task DeleteVehicle(int index)
+    {
+        vehicles.RemoveAt(index);
+    }
+
+    private async Task GetMakes(ChangeEventArgs e)
+    {
+        vParams.Model = "";
+        vParams.Models.Clear();
+        vParams.Make = "";
+        vParams.Makes.Clear();
+        vParams.Year = e.Value.ToString();
+        MenuItems menuItems = await Http.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/make?year={vParams.Year}");
+        vParams.Makes = menuItems.MenuItem;
+        Console.WriteLine($"Got Makes: {menuItems.MenuItem.Count()}");
+    }
+
+    private async Task GetModels(ChangeEventArgs e)
+    {
+        vParams.Model = "";
+        vParams.Models.Clear();
+        vParams.Make = e.Value.ToString();
+        MenuItems menuItems = await Http.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/model?year={vParams.Year}&make={vParams.Make}");
+        vParams.Models = menuItems.MenuItem.ToList();
+        Console.WriteLine($"Got Models: {menuItems.MenuItem.Count()}");
+    }
+
+    private async Task GetModelOptions(ChangeEventArgs e)
+    {
+        vParams.Model = e.Value.ToString();
+        var url = $"/ws/rest/vehicle/menu/options?year={vParams.Year}&make={vParams.Make}&model={vParams.Model}";
+        Console.WriteLine($"Gettting Make Options: {url}");
+        var menuItems = await Http.GetStringAsync(url);
+        var valueIndex = menuItems.IndexOf("value");
+        var textIndex = menuItems.IndexOf("text");
+        newId = menuItems.Substring(valueIndex + 8, 5);
+        newName = menuItems.Substring(textIndex + 7, valueIndex - textIndex - 10);
+        Console.WriteLine($"Got Make Options: {newId}");
+
+    }
+
+    private void SortTable(string columnName)
+    {
+        if (columnName != activeSortColumn)
+        {
+            vehicles = vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            isSortedAscending = true;
+            activeSortColumn = columnName;
+        }
+        else
+        {
+            if (isSortedAscending)
+            {
+                vehicles = vehicles.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            }
+            else
+            {
+                vehicles = vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            }
+            isSortedAscending = !isSortedAscending;
+        }
+    }
+}
