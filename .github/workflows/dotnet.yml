@@ -43,12 +43,11 @@ jobs:
       run: |
         # Stage the file, commit and push
         git checkout ghpages
-        cp ./website ./docs
     - name: copy files
-      run: cp ./website ./docs
+      run: cp -r ./website ./docs
     - name: commit
       run: |
         # Stage the file, commit and push
-        git add .
+        git add ./docs
         git commit -m "Publish Site"
         git push origin ghpages
