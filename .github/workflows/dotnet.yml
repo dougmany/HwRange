@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
+      with: 
+        fetch-depth: 0
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -39,7 +42,7 @@ jobs:
     - name: checkout
       run: |
         # Stage the file, commit and push
-        git checkout ghpages fetch-depth: 0
+        git checkout ghpages
         cp ./website ./docs
     - name: copy files
       run: cp ./website ./docs
