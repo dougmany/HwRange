@@ -44,7 +44,7 @@ jobs:
         # Stage the file, commit and push
         git checkout ghpages
     - name: copy files
-      run: cp -r ./website/. ./docs
+      run: cp -r ./website/wwwroot/. ./docs
     - name: commit
       run: |
         # Stage the file, commit and push
