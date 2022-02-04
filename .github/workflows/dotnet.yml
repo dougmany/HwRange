@@ -31,3 +31,21 @@ jobs:
         name: website
         path: website/wwwroot/**
         if-no-files-found: error
+    - name: setup git config
+      run: |
+        # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+    - name: checkout
+      run: |
+        # Stage the file, commit and push
+        git checkout ghpages
+        cp ./website ./docs
+    - name: copy files
+      run: cp ./website ./docs
+    - name: commit
+      run: |
+        # Stage the file, commit and push
+        git add .
+        git commit -m "Publish Site"
+        git push origin ghpages
