@@ -39,7 +39,7 @@ jobs:
     - name: checkout
       run: |
         # Stage the file, commit and push
-        git checkout ghpages
+        git checkout ghpages fetch-depth: 0
         cp ./website ./docs
     - name: copy files
       run: cp ./website ./docs
