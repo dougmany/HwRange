@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
+      with: 
+        fetch-depth: 0
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -31,3 +34,20 @@ jobs:
         name: website
         path: website/wwwroot/**
         if-no-files-found: error
+    - name: setup git config
+      run: |
+        # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+    - name: checkout
+      run: |
+        # Stage the file, commit and push
+        git checkout ghpages
+    - name: copy files
+      run: cp -r ./website/wwwroot/. ./docs
+    - name: commit
+      run: |
+        # Stage the file, commit and push
+        git add ./docs
+        git commit -m "Publish Site"
+        git push origin ghpages
