@@ -7,12 +7,12 @@
   {
     "name": "Mercedes EQS 450+",
     "capacity": 107.8,
-    "id": 12345
+    "id": 44785
   },
   {
     "name": "Mercedes EQS 580 4MATIC",
     "capacity": 107.8,
-    "id": 12345
+    "id": 45023
   },
   {
     "name": "BMW iX M60",
@@ -25,9 +25,14 @@
     "id": 12345
   },
   {
-    "name": "Lucid Air Grand Touring",
+    "name": "Lucid Air Grand Touring 21",
     "capacity": 105,
-    "id": 12345
+    "id": 44496
+  },
+  {
+    "name": "Lucid Air Grand Touring 19",
+    "capacity": 105,
+    "id": 44495
   },
   {
     "name": "Tesla Model S Long Range",
@@ -37,7 +42,7 @@
   {
     "name": "Tesla Model S Plaid",
     "capacity": 95,
-    "id": 12345
+    "id": 45016
   },
   {
     "name": "Tesla Model X Long Range",
@@ -47,7 +52,7 @@
   {
     "name": "Tesla Model X Plaid",
     "capacity": 95,
-    "id": 12345
+    "id": 45022
   },
   {
     "name": "Mercedes EQS 350",
@@ -275,9 +280,9 @@
     "id": 44052
   },
   {
-    "name": "Volkswagen ID.4 GTX",
+    "name": "Volkswagen ID.4 1st",
     "capacity": 77,
-    "id": 12345
+    "id": 43557
   },
   {
     "name": "Volkswagen ID.3 Pro S - 4 Seats",
@@ -317,7 +322,7 @@
   {
     "name": "Tesla Model 3 Long Range Dual Motor",
     "capacity": 75,
-    "id": 12345
+    "id": 45011
   },
   {
     "name": "Volvo XC40 Recharge Twin Pure Electric",
@@ -327,12 +332,12 @@
   {
     "name": "Tesla Model Y Long Range Dual Motor",
     "capacity": 75,
-    "id": 12345
+    "id": 45018
   },
   {
     "name": "Tesla Model 3 Performance",
     "capacity": 75,
-    "id": 12345
+    "id": 45012
   },
   {
     "name": "Volvo C40 Recharge",
@@ -342,7 +347,7 @@
   {
     "name": "Tesla Model Y Performance",
     "capacity": 75,
-    "id": 12345
+    "id": 45019
   },
   {
     "name": "Polestar 2 Long Range Single Motor",
@@ -577,7 +582,7 @@
   {
     "name": "Tesla Model 3",
     "capacity": 57.5,
-    "id": 12345
+    "id": 45013
   },
   {
     "name": "MG MG5 Electric",
@@ -592,7 +597,12 @@
   {
     "name": "Nissan Leaf e+",
     "capacity": 56,
-    "id": 12345
+    "id": 43665
+  },
+  {
+    "name": "Nissan Leaf SV/SL e+",
+    "capacity": 56,
+    "id": 43666
   },
   {
     "name": "Hyundai IONIQ 5 Standard Range 2WD",
@@ -615,9 +625,9 @@
     "id": 12345
   },
   {
-    "name": "Volkswagen ID.4 Pure Performance",
+    "name": "Volkswagen ID.4 Pro S",
     "capacity": 52,
-    "id": 12345
+    "id": 43558
   },
   {
     "name": "Audi Q4 e-tron 35",
@@ -630,9 +640,9 @@
     "id": 12345
   },
   {
-    "name": "Volkswagen ID.4 Pure",
+    "name": "Volkswagen ID.4 AWD Pro S",
     "capacity": 52,
-    "id": 12345
+    "id": 44726
   },
   {
     "name": "MG ZS EV Standard Range",
@@ -732,7 +742,7 @@
   {
     "name": "Nissan Leaf",
     "capacity": 37,
-    "id": 12345
+    "id": 43664
   },
   {
     "name": "Mazda MX-30",
