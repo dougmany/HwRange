@@ -116,7 +116,7 @@
             {
                 if (highwayE > 0)
                 {
-                    return Math.Round(100 / highwayE, 5);
+                    return Math.Round(100 / highwayE, 2);
                 }
                 return 0;
             }
@@ -126,84 +126,19 @@
             get {
                 if (highwayE > 0 && UsableBattery > 0)
                 {
-                    return Math.Round(UsableBattery * 100 / highwayE, 5);
+                    return Math.Round(UsableBattery * 100 / highwayE, 1);
                 }
                 return 0;
             }
         }
     }
+
+    public class VehicleCapacity 
+    {
+        public String Name { get; set; }
+        public Double Capacity { get; set; }
+        public int Id { get; set; }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

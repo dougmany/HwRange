@@ -1,5 +1,6 @@
 ﻿@page "/"
-@inject HttpClient Http
+@inject HwMiles.EPAService epaService;
+@inject HwMiles.HWMilesService hwMilesService;
 
 <PageTitle>Index</PageTitle>
 
@@ -117,6 +118,7 @@ else
     private String newId = "44725";
     private String newName = "";
     private VehicleParameters vParams = new VehicleParameters();
+    private VehicleCapacity[] vehicleCapacities;
 
     protected override async Task OnInitializedAsync()
     {
@@ -124,16 +126,23 @@ else
         {
             vehicles = new List<Vehicle>();
         }
-        Http.DefaultRequestHeaders.Add("accept", "application/json ");
-
-        MenuItems menuItems = await Http.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/year");
+        MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/year");
         vParams.Years = menuItems.MenuItem.ToList();
+
+        vehicleCapacities = await hwMilesService.httpClient.GetFromJsonAsync<VehicleCapacity[]>("vehicleCapacities.json");
 
     }
 
     private async Task AddVehicle()
     {
-        Vehicle vehicle = await Http.GetFromJsonAsync<Vehicle>($"ws/rest/vehicle/{newId}");
+        Vehicle vehicle = await epaService.httpClient.GetFromJsonAsync<Vehicle>($"ws/rest/vehicle/{newId}");
+        var capacity = vehicleCapacities.Where(vc => vc.Id == vehicle.id);
+
+        if(capacity.Count() > 0)
+        {
+            vehicle.UsableBattery = capacity.ElementAt(0).Capacity;
+        }
+
         vehicles.Add(vehicle);
     }
 
@@ -149,7 +158,7 @@ else
         vParams.Make = "";
         vParams.Makes.Clear();
         vParams.Year = e.Value.ToString();
-        MenuItems menuItems = await Http.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/make?year={vParams.Year}");
+        MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/make?year={vParams.Year}");
         vParams.Makes = menuItems.MenuItem;
         Console.WriteLine($"Got Makes: {menuItems.MenuItem.Count()}");
     }
@@ -159,7 +168,7 @@ else
         vParams.Model = "";
         vParams.Models.Clear();
         vParams.Make = e.Value.ToString();
-        MenuItems menuItems = await Http.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/model?year={vParams.Year}&make={vParams.Make}");
+        MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/model?year={vParams.Year}&make={vParams.Make}");
         vParams.Models = menuItems.MenuItem.ToList();
         Console.WriteLine($"Got Models: {menuItems.MenuItem.Count()}");
     }
@@ -169,7 +178,7 @@ else
         vParams.Model = e.Value.ToString();
         var url = $"/ws/rest/vehicle/menu/options?year={vParams.Year}&make={vParams.Make}&model={vParams.Model}";
         Console.WriteLine($"Gettting Make Options: {url}");
-        var menuItems = await Http.GetStringAsync(url);
+        var menuItems = await epaService.httpClient.GetStringAsync(url);
         var valueIndex = menuItems.IndexOf("value");
         var textIndex = menuItems.IndexOf("text");
         newId = menuItems.Substring(valueIndex + 8, 5);
