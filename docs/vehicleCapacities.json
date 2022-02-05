@@ -1,0 +1,777 @@
+[
+  {
+    "name": "Mercedes EQS AMG 53 4MATIC+",
+    "capacity": 107.8,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQS 450+",
+    "capacity": 107.8,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQS 580 4MATIC",
+    "capacity": 107.8,
+    "id": 12345
+  },
+  {
+    "name": "BMW iX M60",
+    "capacity": 105.2,
+    "id": 12345
+  },
+  {
+    "name": "BMW iX xDrive50",
+    "capacity": 105.2,
+    "id": 12345
+  },
+  {
+    "name": "Lucid Air Grand Touring",
+    "capacity": 105,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model S Long Range",
+    "capacity": 95,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model S Plaid",
+    "capacity": 95,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model X Long Range",
+    "capacity": 95,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model X Plaid",
+    "capacity": 95,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQS 350",
+    "capacity": 90.6,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQE 350",
+    "capacity": 90,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQV 300 Extra-Long",
+    "capacity": 90,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes eVito Tourer Long 90 kWh",
+    "capacity": 90,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes eVito Tourer Extra-Long 90 kWh",
+    "capacity": 90,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQV 300 Long",
+    "capacity": 90,
+    "id": 12345
+  },
+  {
+    "name": "Ford Mustang Mach-E ER RWD",
+    "capacity": 88,
+    "id": 12345
+  },
+  {
+    "name": "Ford Mustang Mach-E ER AWD",
+    "capacity": 88,
+    "id": 12345
+  },
+  {
+    "name": "Ford Mustang Mach-E GT",
+    "capacity": 88,
+    "id": 12345
+  },
+  {
+    "name": "Nissan Ariya 87kWh",
+    "capacity": 87,
+    "id": 12345
+  },
+  {
+    "name": "Nissan Ariya e-4ORCE 87kWh",
+    "capacity": 87,
+    "id": 12345
+  },
+  {
+    "name": "Nissan Ariya e-4ORCE 87kWh Performance",
+    "capacity": 87,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron 55 quattro",
+    "capacity": 86.5,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron Sportback 55 quattro",
+    "capacity": 86.5,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron Sportback 55 quattro",
+    "capacity": 86.5,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron 55 quattro",
+    "capacity": 86.5,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron S 55 quattro",
+    "capacity": 86.5,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron S Sportback 55 quattro",
+    "capacity": 86.5,
+    "id": 12345
+  },
+  {
+    "name": "Lucid Air Touring",
+    "capacity": 85,
+    "id": 12345
+  },
+  {
+    "name": "Lucid Air Pure",
+    "capacity": 85,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron GT RS",
+    "capacity": 85,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron GT quattro",
+    "capacity": 85,
+    "id": 12345
+  },
+  {
+    "name": "Jaguar I-Pace EV400",
+    "capacity": 84.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan GTS",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan GTS Sport Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Plus Sport Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan 4S Plus Sport Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Turbo Sport Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Turbo S Sport Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Turbo S",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Plus",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan 4S Cross Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Turbo Cross Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Turbo S Cross Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan 4 Cross Turismo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Turbo",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan 4S Plus",
+    "capacity": 83.7,
+    "id": 12345
+  },
+  {
+    "name": "BMW i4 eDrive40",
+    "capacity": 80.7,
+    "id": 12345
+  },
+  {
+    "name": "BMW i4 M50",
+    "capacity": 80.7,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQC 400 4MATIC",
+    "capacity": 80,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.5 Pro",
+    "capacity": 77,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.5 Pro Performance",
+    "capacity": 77,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.5 GTX",
+    "capacity": 77,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.4 AWD Pro",
+    "capacity": 77,
+    "id": 44725
+  },
+  {
+    "name": "Volkswagen ID.4 Pro",
+    "capacity": 77,
+    "id": 44052
+  },
+  {
+    "name": "Volkswagen ID.4 GTX",
+    "capacity": 77,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.3 Pro S - 4 Seats",
+    "capacity": 77,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.3 Pro S - 5 Seats",
+    "capacity": 77,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 e-tron 40",
+    "capacity": 76.6,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 e-tron 50 quattro",
+    "capacity": 76.6,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 Sportback e-tron 50 quattro",
+    "capacity": 76.6,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 e-tron 45 quattro",
+    "capacity": 76.6,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 Sportback e-tron 40",
+    "capacity": 76.6,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model 3 Long Range Dual Motor",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Volvo XC40 Recharge Twin Pure Electric",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model Y Long Range Dual Motor",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model 3 Performance",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Volvo C40 Recharge",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model Y Performance",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Polestar 2 Long Range Single Motor",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "Polestar 2 Long Range Dual Motor",
+    "capacity": 75,
+    "id": 12345
+  },
+  {
+    "name": "BMW iX3",
+    "capacity": 74,
+    "id": 12345
+  },
+  {
+    "name": "Kia EV6 GT",
+    "capacity": 72.5,
+    "id": 12345
+  },
+  {
+    "name": "Kia EV6 Long Range 2WD",
+    "capacity": 72.5,
+    "id": 12345
+  },
+  {
+    "name": "Kia EV6 Long Range AWD",
+    "capacity": 72.5,
+    "id": 12345
+  },
+  {
+    "name": "Toyota bZ4X FWD",
+    "capacity": 71.4,
+    "id": 12345
+  },
+  {
+    "name": "Toyota bZ4X AWD",
+    "capacity": 71.4,
+    "id": 12345
+  },
+  {
+    "name": "Subaru Solterra AWD",
+    "capacity": 71.4,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan Sport Turismo",
+    "capacity": 71,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan 4S Sport Turismo",
+    "capacity": 71,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan",
+    "capacity": 71,
+    "id": 12345
+  },
+  {
+    "name": "BMW iX xDrive40",
+    "capacity": 71,
+    "id": 12345
+  },
+  {
+    "name": "Porsche Taycan 4S",
+    "capacity": 71,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai IONIQ 5 Long Range 2WD",
+    "capacity": 70,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai IONIQ 5 Long Range AWD",
+    "capacity": 70,
+    "id": 12345
+  },
+  {
+    "name": "MG ZS EV Long Range",
+    "capacity": 68.3,
+    "id": 12345
+  },
+  {
+    "name": "Ford Mustang Mach-E SR RWD",
+    "capacity": 68,
+    "id": 12345
+  },
+  {
+    "name": "Ford Mustang Mach-E SR AWD",
+    "capacity": 68,
+    "id": 12345
+  },
+  {
+    "name": "Volvo XC40 Recharge Pure Electric",
+    "capacity": 67,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQB 300 4MATIC",
+    "capacity": 66.5,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQA 250",
+    "capacity": 66.5,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQB 350 4MATIC",
+    "capacity": 66.5,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQA 300 4MATIC",
+    "capacity": 66.5,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQA 350 4MATIC",
+    "capacity": 66.5,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Shuttle M 75 kWh",
+    "capacity": 65,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Shuttle L 75 kWh",
+    "capacity": 65,
+    "id": 12345
+  },
+  {
+    "name": "MG Marvel R Performance",
+    "capacity": 65,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Verso M 75 kWh",
+    "capacity": 65,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Verso L 75 kWh",
+    "capacity": 65,
+    "id": 12345
+  },
+  {
+    "name": "MG Marvel R",
+    "capacity": 65,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron 50 quattro",
+    "capacity": 64.7,
+    "id": 12345
+  },
+  {
+    "name": "Audi e-tron Sportback 50 quattro",
+    "capacity": 64.7,
+    "id": 12345
+  },
+  {
+    "name": "Kia e-Soul 64 kWh",
+    "capacity": 64,
+    "id": 12345
+  },
+  {
+    "name": "Kia e-Niro 64 kWh",
+    "capacity": 64,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai Kona Electric 64 kWh",
+    "capacity": 64,
+    "id": 12345
+  },
+  {
+    "name": "Nissan Ariya 63kWh",
+    "capacity": 63,
+    "id": 12345
+  },
+  {
+    "name": "Polestar 2 Standard Range Single Motor",
+    "capacity": 61,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQV 250 Long",
+    "capacity": 60,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes EQV 250 Extra-Long",
+    "capacity": 60,
+    "id": 12345
+  },
+  {
+    "name": "Renault Megane E-Tech EV60 130hp",
+    "capacity": 60,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes eVito Tourer Long 60 kWh",
+    "capacity": 60,
+    "id": 12345
+  },
+  {
+    "name": "Mercedes eVito Tourer Extra-Long 60 kWh",
+    "capacity": 60,
+    "id": 12345
+  },
+  {
+    "name": "Lightyear One",
+    "capacity": 60,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.3 Pro",
+    "capacity": 58,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.3 Pro Performance",
+    "capacity": 58,
+    "id": 12345
+  },
+  {
+    "name": "Tesla Model 3",
+    "capacity": 57.5,
+    "id": 12345
+  },
+  {
+    "name": "MG MG5 Electric",
+    "capacity": 57,
+    "id": 12345
+  },
+  {
+    "name": "MG MG5 EV Long Range",
+    "capacity": 57,
+    "id": 12345
+  },
+  {
+    "name": "Nissan Leaf e+",
+    "capacity": 56,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai IONIQ 5 Standard Range 2WD",
+    "capacity": 54,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai IONIQ 5 Standard Range AWD",
+    "capacity": 54,
+    "id": 12345
+  },
+  {
+    "name": "Kia EV6 Standard Range 2WD",
+    "capacity": 54,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 Sportback e-tron 35",
+    "capacity": 52,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.4 Pure Performance",
+    "capacity": 52,
+    "id": 12345
+  },
+  {
+    "name": "Audi Q4 e-tron 35",
+    "capacity": 52,
+    "id": 12345
+  },
+  {
+    "name": "Renault Zoe ZE50 R135",
+    "capacity": 52,
+    "id": 12345
+  },
+  {
+    "name": "Volkswagen ID.4 Pure",
+    "capacity": 52,
+    "id": 12345
+  },
+  {
+    "name": "MG ZS EV Standard Range",
+    "capacity": 49,
+    "id": 12345
+  },
+  {
+    "name": "MG MG5 EV",
+    "capacity": 48.8,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Shuttle M 50 kWh",
+    "capacity": 45,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Shuttle L 50 kWh",
+    "capacity": 45,
+    "id": 12345
+  },
+  {
+    "name": "Lexus UX 300e",
+    "capacity": 45,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Verso M 50 kWh",
+    "capacity": 45,
+    "id": 12345
+  },
+  {
+    "name": "Toyota PROACE Verso L 50 kWh",
+    "capacity": 45,
+    "id": 12345
+  },
+  {
+    "name": "Renault Zoe ZE40 R110",
+    "capacity": 41,
+    "id": 12345
+  },
+  {
+    "name": "Renault Megane E-Tech EV40 130hp",
+    "capacity": 40,
+    "id": 12345
+  },
+  {
+    "name": "Kia e-Soul 39 kWh",
+    "capacity": 39.2,
+    "id": 12345
+  },
+  {
+    "name": "Kia e-Niro 39 kWh",
+    "capacity": 39.2,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai Kona Electric 39 kWh",
+    "capacity": 39.2,
+    "id": 12345
+  },
+  {
+    "name": "JAC iEV7s",
+    "capacity": 39,
+    "id": 12345
+  },
+  {
+    "name": "Hyundai IONIQ Electric",
+    "capacity": 38.3,
+    "id": 12345
+  },
+  {
+    "name": "BMW i3 120 Ah",
+    "capacity": 37.9,
+    "id": 12345
+  },
+  {
+    "name": "BMW i3s 120 Ah",
+    "capacity": 37.9,
+    "id": 12345
+  },
+  {
+    "name": "Fiat 500e Hatchback 42 kWh",
+    "capacity": 37.3,
+    "id": 12345
+  },
+  {
+    "name": "Fiat 500e 3+1",
+    "capacity": 37.3,
+    "id": 12345
+  },
+  {
+    "name": "Fiat 500e Cabrio",
+    "capacity": 37.3,
+    "id": 12345
+  },
+  {
+    "name": "Nissan Leaf",
+    "capacity": 37,
+    "id": 12345
+  },
+  {
+    "name": "Mazda MX-30",
+    "capacity": 30,
+    "id": 12345
+  },
+  {
+    "name": "Mini Cooper SE",
+    "capacity": 28.9,
+    "id": 12345
+  },
+  {
+    "name": "Honda e",
+    "capacity": 28.5,
+    "id": 12345
+  },
+  {
+    "name": "Honda e Advance",
+    "capacity": 28.5,
+    "id": 12345
+  },
+  {
+    "name": "Fiat 500e Hatchback 24 kWh",
+    "capacity": 21.3,
+    "id": 12345
+  },
+  {
+    "name": "Smart EQ fortwo coupe",
+    "capacity": 16.7,
+    "id": 12345
+  },
+  {
+    "name": "Smart EQ fortwo cabrio",
+    "capacity": 16.7,
+    "id": 12345
+  },
+  {
+    "name": "Smart EQ forfour",
+    "capacity": 16.7,
+    "id": 12345
+  }
+]
