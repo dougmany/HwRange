@@ -7,7 +7,7 @@
 <h1>Highway EV Range calculator</h1>
 
 <p>
-Want to compare EV range values  then you have come to the right place.  Just click on the Calulator link in the menu and select you cars.
+    This calculator pulls highway efficency data from the EPS's web service and allow you to calculate range by entering the available battery capacity.
 </p>
 
 @if (vehicles == null)
@@ -97,8 +97,8 @@ else
             @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
             {
                 <tr>
-                    <td>@vehicle.value.year.</td>
-                    <td>@vehicle.value.make.</td>
+                    <td title="@vehicle.value.id">@vehicle.value.year</td>
+                    <td>@vehicle.value.make</td>
                     <td>@vehicle.value.model</td>
                     <td>@vehicle.value.highwayEover100</td>
                     <td><input @bind=@vehicle.value.UsableBattery /></td>
