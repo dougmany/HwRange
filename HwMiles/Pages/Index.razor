@@ -97,13 +97,13 @@ else
             @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
             {
                 <tr>
-                    <td title="@vehicle.value.id">@vehicle.value.year</td>
-                    <td>@vehicle.value.make</td>
-                    <td>@vehicle.value.model</td>
-                    <td>@vehicle.value.highwayEover100</td>
-                    <td><input @bind=@vehicle.value.UsableBattery /></td>
-                    <td>@vehicle.value.CalculatedRange</td>
-                    <td><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
+                    <td data-label="Year"  title="@vehicle.value.id">@vehicle.value.year</td>
+                    <td data-label="Make"  >@vehicle.value.make</td>
+                    <td data-label="Model" >@vehicle.value.model</td>
+                    <td data-label="HW kWh/mi" >@vehicle.value.highwayEover100</td>
+                    <td data-label="Battery" ><input @bind=@vehicle.value.UsableBattery /></td>
+                    <td data-label="Range" >@vehicle.value.CalculatedRange</td>
+                    <td data-label="Remove" ><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
                 </tr>
             }
         </tbody>
