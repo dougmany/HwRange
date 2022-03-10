@@ -780,18 +780,33 @@
     "id": 12345
   },
   {
-    "name": "Kia Ioniq Long Range AWD",
+    "name": "Hyundi Ioniq Long Range AWD",
     "capacity": 73,
     "id": 44922
   },
   {
-    "name": "Kia Ioniq Long Range RWD",
+    "name": "Hyundi Ioniq Long Range RWD",
     "capacity": 73,
     "id": 44923
   },
   {
-    "name": "Kia Ioniq Standard Range",
+    "name": "Hyundi Ioniq Standard Range",
     "capacity": 58,
     "id": 44924
+  },
+  {
+    "name": "Kia EV6 Long Range AWD",
+    "capacity": 77.4,
+    "id": 44925
+  },
+  {
+    "name": "Kia EV6 Long Range RWD",
+    "capacity": 77.4,
+    "id": 44926
+  },
+  {
+    "name": "Kia EV6 Standard Range",
+    "capacity": 58,
+    "id": 44927
   }
 ]
