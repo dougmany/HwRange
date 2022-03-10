@@ -780,8 +780,18 @@
     "id": 12345
   },
   {
-    "name": "Smart EQ forfour",
-    "capacity": 16.7,
-    "id": 12345
+    "name": "Kia Ioniq Long Range AWD",
+    "capacity": 73,
+    "id": 44922
+  },
+  {
+    "name": "Kia Ioniq Long Range RWD",
+    "capacity": 73,
+    "id": 44923
+  },
+  {
+    "name": "Kia Ioniq Standard Range",
+    "capacity": 58,
+    "id": 44924
   }
 ]
