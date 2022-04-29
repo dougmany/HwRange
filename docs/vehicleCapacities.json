@@ -780,18 +780,78 @@
     "id": 12345
   },
   {
-    "name": "Kia Ioniq Long Range AWD",
+    "name": "Hyundi Ioniq Long Range AWD",
     "capacity": 73,
     "id": 44922
   },
   {
-    "name": "Kia Ioniq Long Range RWD",
+    "name": "Hyundi Ioniq Long Range RWD",
     "capacity": 73,
     "id": 44923
   },
   {
-    "name": "Kia Ioniq Standard Range",
+    "name": "Hyundi Ioniq Standard Range",
     "capacity": 58,
     "id": 44924
+  },
+  {
+    "name": "Kia EV6 Long Range AWD",
+    "capacity": 77.4,
+    "id": 44925
+  },
+  {
+    "name": "Kia EV6 Long Range RWD",
+    "capacity": 77.4,
+    "id": 44926
+  },
+  {
+    "name": "Kia EV6 Standard Range",
+    "capacity": 58,
+    "id": 44927
+  },
+  {
+    "name": "Mach-e Extended Range AWD",
+    "capacity": 91,
+    "id": 45139
+  },
+  {
+    "name": "Mach-e  Extended Range RWD",
+    "capacity": 91,
+    "id": 45145
+  },
+  {
+    "name": "Mach-e  Standard Range AWD",
+    "capacity": 70,
+    "id": 45144
+  },
+  {
+    "name": "Mach-e  Standard Range RWD",
+    "capacity": 70,
+    "id": 44927
+  },
+    {
+    "name": "2022 Rivian R1S",
+    "capacity": 129,
+    "id": 44461
+  },
+  {
+    "name": "2022 Rivian R1T",
+    "capacity": 129,
+    "id": 44462
+  },
+  {
+    "name": "2022 VW ID.4 AWD Pro",
+    "capacity": 77,
+    "id": 45257
+  },
+  {
+    "name": "2022 VW ID.4 AWD Pro S",
+    "capacity": 77,
+    "id": 45258
+  },
+  {
+    "name": "2022 VW ID.4 Pro",
+    "capacity": 77,
+    "id": 45259
   }
 ]
