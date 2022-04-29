@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inject HwMiles.EPAService epaService;
 @inject HwMiles.HWMilesService hwMilesService;
+@inject LocalStorageService Storage;
 
 <PageTitle>Index</PageTitle>
 
@@ -97,13 +98,13 @@ else
             @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
             {
                 <tr>
-                    <td data-label="Year"  title="@vehicle.value.id">@vehicle.value.year</td>
-                    <td data-label="Make"  >@vehicle.value.make</td>
-                    <td data-label="Model" >@vehicle.value.model</td>
-                    <td data-label="HW kWh/mi" >@vehicle.value.highwayEover100</td>
-                    <td data-label="Battery" ><input @bind=@vehicle.value.UsableBattery /></td>
-                    <td data-label="Range" >@vehicle.value.CalculatedRange</td>
-                    <td data-label="Remove" ><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
+                    <td data-label="Year" title="@vehicle.value.id">@vehicle.value.year</td>
+                    <td data-label="Make">@vehicle.value.make</td>
+                    <td data-label="Model">@vehicle.value.model</td>
+                    <td data-label="HW kWh/mi">@vehicle.value.highwayEover100</td>
+                    <td data-label="Battery"><input @bind=@vehicle.value.UsableBattery /></td>
+                    <td data-label="Range">@vehicle.value.CalculatedRange</td>
+                    <td data-label="Remove"><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
                 </tr>
             }
         </tbody>
@@ -115,10 +116,11 @@ else
     private string activeSortColumn;
 
     private List<Vehicle> vehicles;
-    private String newId = "44725";
+    private String newId = "45257";
     private String newName = "";
     private VehicleParameters vParams = new VehicleParameters();
     private VehicleCapacity[] vehicleCapacities;
+    const string key = "hwmilesKey";
 
     protected override async Task OnInitializedAsync()
     {
@@ -131,6 +133,7 @@ else
 
         vehicleCapacities = await hwMilesService.httpClient.GetFromJsonAsync<VehicleCapacity[]>("vehicleCapacities.json");
 
+        await GetLocalValue();
     }
 
     private async Task AddVehicle()
@@ -138,17 +141,20 @@ else
         Vehicle vehicle = await epaService.httpClient.GetFromJsonAsync<Vehicle>($"ws/rest/vehicle/{newId}");
         var capacity = vehicleCapacities.Where(vc => vc.Id == vehicle.id);
 
-        if(capacity.Count() > 0)
+        if (capacity.Count() > 0)
         {
             vehicle.UsableBattery = capacity.ElementAt(0).Capacity;
         }
 
         vehicles.Add(vehicle);
+
+        SetLocalValue();
     }
 
     private void DeleteVehicle(int index)
     {
         vehicles.RemoveAt(index);
+        SetLocalValue();
     }
 
     private async Task GetMakes(ChangeEventArgs e)
@@ -206,6 +212,23 @@ else
                 vehicles = vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             }
             isSortedAscending = !isSortedAscending;
+        }
+
+        SetLocalValue();
+    }
+
+    async Task SetLocalValue()
+    {
+        await Storage.SetLocalStorage(key, System.Text.Json.JsonSerializer.Serialize(vehicles));
+    }
+
+    async Task GetLocalValue()
+    {
+        var localValue = await Storage.GetFromLocalStorage(key);
+
+        if (localValue != null)
+        {
+            vehicles = System.Text.Json.JsonSerializer.Deserialize<List<Vehicle>>(localValue);
         }
     }
 }
