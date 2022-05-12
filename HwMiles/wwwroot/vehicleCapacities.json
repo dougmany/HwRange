@@ -853,5 +853,15 @@
     "name": "2022 VW ID.4 Pro",
     "capacity": 77,
     "id": 45259
+  },
+  {
+    "name": "2022 F150 Lightning Extended Range",
+    "capacity": 131,
+    "id": 45317
+  },
+  {
+    "name": "2022 F150 Lightning",
+    "capacity": 98,
+    "id": 45318
   }
 ]
