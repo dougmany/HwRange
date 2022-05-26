@@ -85,8 +85,6 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th @onclick="@(() => SortTable("year"))">Year</th>
-                <th @onclick="@(() => SortTable("make"))">Make</th>
                 <th @onclick="@(() => SortTable("model"))">Model</th>
                 <th @onclick="@(() => SortTable("highwayEover100"))">HW kWh/mi</th>
                 <th @onclick="@(() => SortTable("UsableBattery"))">Usable Battery</th>
@@ -98,9 +96,7 @@ else
             @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
             {
                 <tr>
-                    <td data-label="Year" title="@vehicle.value.id">@vehicle.value.year</td>
-                    <td data-label="Make">@vehicle.value.make</td>
-                    <td data-label="Model">@vehicle.value.model</td>
+                    <td data-label="Model" title="@vehicle.value.id">@vehicle.value.year @vehicle.value.make @vehicle.value.model</td>
                     <td data-label="HW kWh/mi">@vehicle.value.highwayEover100</td>
                     <td data-label="Battery"><input @bind=@vehicle.value.UsableBattery /></td>
                     <td data-label="Range">@vehicle.value.CalculatedRange</td>
