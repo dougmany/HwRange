@@ -87,8 +87,7 @@ else
             <tr>
                 <th @onclick="@(() => SortTable("model"))">Model</th>
                 <th @onclick="@(() => SortTable("highwayEover100"))">HW kWh/mi</th>
-                <th @onclick="@(() => SortTable("UsableBattery"))">Usable Battery</th>
-                <th @onclick="@(() => SortTable("CalculatedRange"))">Calculated Range</th>
+                <th @onclick="@(() => SortTable("rangeHwy"))">HW Range</th>
                 <th></th>
             </tr>
         </thead>
@@ -98,8 +97,7 @@ else
                 <tr>
                     <td data-label="Model" title="@vehicle.value.id">@vehicle.value.year @vehicle.value.make @vehicle.value.model</td>
                     <td data-label="HW kWh/mi">@vehicle.value.highwayEover100</td>
-                    <td data-label="Battery"><input @bind=@vehicle.value.UsableBattery /></td>
-                    <td data-label="Range">@vehicle.value.CalculatedRange</td>
+                    <td data-label="HW Range">@vehicle.value.rangeHwy</td>
                     <td data-label="Remove"><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
                 </tr>
             }
