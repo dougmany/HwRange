@@ -17,92 +17,104 @@
 }
 else
 {
-    @if (vParams.Years.Count > 0)
+    if (!apiAvailable)
     {
+        <div class="alert alert-warning" role="alert">
+            @apiErrorMessage
+        </div>
+    }
+    else
+    {
+        @if (vParams.Years.Count > 0)
+        {
+            <p>
+                <label>Year</label>
+                <select value="@vParams.Year" @onchange="HandleYearChange">
+                    @foreach (var item in vParams.Years)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </p>
+        }
+
+        @if (vParams.Makes.Count > 0)
+        {
+            <p>
+                <label>Make</label>
+                <select value="@vParams.Make" @onchange="HandleMakeChange">
+                    @foreach (var item in vParams.Makes)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </p>
+        }
+
+        @if (vParams.Models.Count > 0)
+        {
+            <p>
+                <label>Model</label>
+                <select value="@vParams.Model" @onchange="HandleModelChange">
+                    @foreach (var item in vParams.Models)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </p>
+        }
+
+        @if (vParams.ModelOptions.Count > 0)
+        {
+            <p>
+                <label>Options</label>
+                <select value="@vParams.VehicleID" @onchange="HandleOptionChange">
+                    @foreach (var item in vParams.ModelOptions)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </p>
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(newName))
+        {
+            <p>
+                <label>
+                    @newName
+                </label>
+            </p>
+        }
         <p>
-            <label>Year</label>
-            <select value="@vParams.Year" @onchange="@GetMakes">
-                @foreach (var item in vParams.Years)
-                {
-                    <option value="@item.Value">@item.Text</option>
-                }
-            </select>
+            <button class="btn btn-primary" @onclick="AddVehicle" disabled="@(vParams.VehicleID == 0)">Add</button>
         </p>
     }
 
-    @if (vParams.Makes.Count > 0)
+    @if (vehicles.Count > 0)
     {
-        <p>
-            <label>Makes</label>
-            <select value="@vParams.Make" @onchange="@GetModels">
-                @foreach (var item in vParams.Makes)
-                {
-                    <option value="@item.Value">@item.Text</option>
-                }
-            </select>
-        </p>
-    }
-
-    @if (vParams.Models.Count > 0)
-    {
-        <p>
-            <label>Makes</label>
-            <select value="@vParams.Model" @onchange="@GetModelOptions">
-                @foreach (var item in vParams.Models)
-                {
-                    <option value="@item.Value">@item.Text</option>
-                }
-            </select>
-        </p>
-    }
-
-    @if (vParams.ModelOptions.Count > 0)
-    {
-        <p>
-            <label>Makes</label>
-            <select @bind="vParams.VehicleID">
-                @foreach (var item in vParams.ModelOptions)
-                {
-                    <option value="@item.Value">@item.Text</option>
-                }
-            </select>
-        </p>
-
-    }
-
-    @if (newName != "")
-    {
-        <p>
-            <label>
-                @newName
-            </label>
-        </p>
-    }
-    <p>
-        <button class="btn btn-primary" @onclick="AddVehicle">Add</button>
-    </p>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th @onclick="@(() => SortTable("model"))">Model</th>
-                <th @onclick="@(() => SortTable("highwayEover100"))">HW mi/kWh</th>
-                <th @onclick="@(() => SortTable("rangeHwy"))">HW Range</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
-            {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td data-label="Model" title="@vehicle.value.id">@vehicle.value.year @vehicle.value.make @vehicle.value.model</td>
-                    <td data-label="HW kWh/mi">@vehicle.value.highwayEover100</td>
-                    <td data-label="HW Range">@vehicle.value.rangeHwy</td>
-                    <td data-label="Remove"><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
+                    <th @onclick="@(() => SortTable("model"))">Model</th>
+                    <th @onclick="@(() => SortTable("highwayEover100"))">HW mi/kWh</th>
+                    <th @onclick="@(() => SortTable("rangeHwy"))">HW Range</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var vehicle in vehicles.Select((value, i) => new { i, value }))
+                {
+                    <tr>
+                        <td data-label="Model" title="@vehicle.value.id">@vehicle.value.year @vehicle.value.make @vehicle.value.model</td>
+                        <td data-label="HW kWh/mi">@vehicle.value.highwayEover100</td>
+                        <td data-label="HW Range">@vehicle.value.rangeHwy</td>
+                        <td data-label="Remove"><button class="btn btn-primary" @onclick="@(()=>DeleteVehicle(@vehicle.i))">X</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 }
 <footer>
   <p><a href="https://github.com/dougmany/HwRange">Github Site</a></p>
@@ -111,107 +123,268 @@ else
 @code {
     private bool isSortedAscending;
     private string activeSortColumn;
+    private bool apiAvailable = true;
+    private string apiErrorMessage = "EPA API is unavailable. Vehicle selection is hidden.";
 
     private List<Vehicle> vehicles;
-    private String newId = "45257";
-    private String newName = "";
+    private string newName = string.Empty;
     private VehicleParameters vParams = new VehicleParameters();
     private VehicleCapacity[] vehicleCapacities;
     const string key = "hwmilesKey";
 
     protected override async Task OnInitializedAsync()
     {
-        if (vehicles == null)
-        {
-            vehicles = new List<Vehicle>();
-        }
-        MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/year");
-        vParams.Years = menuItems.MenuItem.ToList();
-
-        vehicleCapacities = await hwMilesService.httpClient.GetFromJsonAsync<VehicleCapacity[]>("vehicleCapacities.json");
+        vehicles ??= new List<Vehicle>();
 
         await GetLocalValue();
+        await LoadVehicleCapacities();
+
+        try
+        {
+            MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/year?format=json");
+            vParams.Years = menuItems?.MenuItem?.ToList() ?? new List<MenuItem>();
+
+            if (vParams.Years.Any())
+            {
+                vParams.Year = vParams.Years.First().Value;
+                await LoadMakesForYear(vParams.Year);
+            }
+        }
+        catch (Exception ex)
+        {
+            apiAvailable = false;
+            Console.Error.WriteLine($"EPA API unavailable: {ex.Message}");
+        }
     }
 
     private async Task AddVehicle()
     {
-        Vehicle vehicle = await epaService.httpClient.GetFromJsonAsync<Vehicle>($"ws/rest/vehicle/{newId}");
-        var capacity = vehicleCapacities.Where(vc => vc.Id == vehicle.id);
-
-        if (capacity.Count() > 0)
+        if (vParams.VehicleID == 0)
         {
-            vehicle.UsableBattery = capacity.ElementAt(0).Capacity;
+            return;
         }
+
+        Vehicle vehicle;
+        try
+        {
+            vehicle = await epaService.httpClient.GetFromJsonAsync<Vehicle>($"ws/rest/vehicle/{vParams.VehicleID}");
+        }
+        catch (Exception ex)
+        {
+            apiAvailable = false;
+            Console.Error.WriteLine($"EPA API unavailable while adding: {ex.Message}");
+            return;
+        }
+
+        if (vehicle == null)
+        {
+            return;
+        }
+
+        if (vehicles.Any(v => v.id == vehicle.id))
+        {
+            return;
+        }
+
+        var capacity = vehicleCapacities.Where(vc => vc.Id == vehicle.id);
+        if (capacity.Any())
+        {
+            vehicle.UsableBattery = capacity.First().Capacity;
+        }
+
+        var selectedOption = vParams.ModelOptions.FirstOrDefault(o => o.Value == vParams.VehicleID.ToString());
+        newName = selectedOption?.Text ?? vehicle.model;
 
         vehicles.Add(vehicle);
 
-        SetLocalValue();
+        await SetLocalValue();
     }
 
-    private void DeleteVehicle(int index)
+    private async Task DeleteVehicle(int index)
     {
+        if (index < 0 || index >= vehicles.Count)
+        {
+            return;
+        }
+
         vehicles.RemoveAt(index);
-        SetLocalValue();
+        await SetLocalValue();
     }
 
-    private async Task GetMakes(ChangeEventArgs e)
+    private Task HandleYearChange(ChangeEventArgs e)
     {
-        vParams.Model = "";
-        vParams.Models.Clear();
-        vParams.Make = "";
+        return LoadMakesForYear(e?.Value?.ToString());
+    }
+
+    private Task HandleMakeChange(ChangeEventArgs e)
+    {
+        return LoadModelsForMake(e?.Value?.ToString());
+    }
+
+    private Task HandleModelChange(ChangeEventArgs e)
+    {
+        return LoadModelOptionsForModel(e?.Value?.ToString());
+    }
+
+    private Task HandleOptionChange(ChangeEventArgs e)
+    {
+        if (int.TryParse(e?.Value?.ToString(), out var vehicleId))
+        {
+            vParams.VehicleID = vehicleId;
+        }
+
+        var selectedOption = vParams.ModelOptions.FirstOrDefault(o => o.Value == vParams.VehicleID.ToString());
+        newName = selectedOption?.Text ?? string.Empty;
+
+        return Task.CompletedTask;
+    }
+
+    private async Task LoadMakesForYear(string year)
+    {
+        vParams.Make = string.Empty;
         vParams.Makes.Clear();
-        vParams.Year = e.Value.ToString();
-        MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/make?year={vParams.Year}");
-        vParams.Makes = menuItems.MenuItem;
-        Console.WriteLine($"Got Makes: {menuItems.MenuItem.Count()}");
-    }
-
-    private async Task GetModels(ChangeEventArgs e)
-    {
-        vParams.Model = "";
+        vParams.Model = string.Empty;
         vParams.Models.Clear();
-        vParams.Make = e.Value.ToString();
-        MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/model?year={vParams.Year}&make={vParams.Make}");
-        vParams.Models = menuItems.MenuItem.ToList();
-        Console.WriteLine($"Got Models: {menuItems.MenuItem.Count()}");
+        vParams.ModelOptions.Clear();
+        vParams.VehicleID = 0;
+
+        if (string.IsNullOrWhiteSpace(year) || !apiAvailable)
+        {
+            return;
+        }
+
+        vParams.Year = year;
+
+        try
+        {
+            MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/make?year={vParams.Year}&format=json");
+            vParams.Makes = menuItems?.MenuItem?.ToList() ?? new List<MenuItem>();
+            Console.WriteLine($"Got Makes: {vParams.Makes.Count}");
+
+            if (vParams.Makes.Any())
+            {
+                vParams.Make = vParams.Makes.First().Value;
+                await LoadModelsForMake(vParams.Make);
+            }
+        }
+        catch (Exception ex)
+        {
+            apiAvailable = false;
+            Console.Error.WriteLine($"EPA API unavailable while getting makes: {ex.Message}");
+        }
     }
 
-    private async Task GetModelOptions(ChangeEventArgs e)
+    private async Task LoadModelsForMake(string make)
     {
-        vParams.Model = e.Value.ToString();
-        var url = $"/ws/rest/vehicle/menu/options?year={vParams.Year}&make={vParams.Make}&model={vParams.Model}";
-        Console.WriteLine($"Gettting Make Options: {url}");
-        var menuItems = await epaService.httpClient.GetStringAsync(url);
-        var valueIndex = menuItems.IndexOf("value");
-        var textIndex = menuItems.IndexOf("text");
-        newId = menuItems.Substring(valueIndex + 8, 5);
-        newName = menuItems.Substring(textIndex + 7, valueIndex - textIndex - 10);
-        Console.WriteLine($"Got Make Options: {newId}");
+        vParams.Model = string.Empty;
+        vParams.Models.Clear();
+        vParams.ModelOptions.Clear();
+        vParams.VehicleID = 0;
 
+        if (string.IsNullOrWhiteSpace(make) || !apiAvailable)
+        {
+            return;
+        }
+
+        vParams.Make = make;
+
+        try
+        {
+            MenuItems menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/model?year={vParams.Year}&make={vParams.Make}&format=json");
+            vParams.Models = menuItems?.MenuItem?.ToList() ?? new List<MenuItem>();
+            Console.WriteLine($"Got Models: {vParams.Models.Count}");
+
+            if (vParams.Models.Any())
+            {
+                vParams.Model = vParams.Models.First().Value;
+                await LoadModelOptionsForModel(vParams.Model);
+            }
+        }
+        catch (Exception ex)
+        {
+            apiAvailable = false;
+            Console.Error.WriteLine($"EPA API unavailable while getting models: {ex.Message}");
+        }
     }
 
-    private void SortTable(string columnName)
+    private async Task LoadModelOptionsForModel(string model)
     {
+        vParams.ModelOptions.Clear();
+        vParams.VehicleID = 0;
+        newName = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(model) || !apiAvailable)
+        {
+            return;
+        }
+
+        vParams.Model = model;
+
+        try
+        {
+            var menuItems = await epaService.httpClient.GetFromJsonAsync<MenuItems>($"/ws/rest/vehicle/menu/options?year={vParams.Year}&make={vParams.Make}&model={vParams.Model}&format=json");
+            vParams.ModelOptions = menuItems?.MenuItem?.ToList() ?? new List<MenuItem>();
+            Console.WriteLine($"Got Options: {vParams.ModelOptions.Count}");
+
+            if (vParams.ModelOptions.Any())
+            {
+                var first = vParams.ModelOptions.First();
+                if (int.TryParse(first.Value, out var vehicleId))
+                {
+                    vParams.VehicleID = vehicleId;
+                }
+                newName = first.Text;
+            }
+        }
+        catch (Exception ex)
+        {
+            apiAvailable = false;
+            Console.Error.WriteLine($"EPA API unavailable while getting options: {ex.Message}");
+        }
+    }
+
+    private Task SortTable(string columnName)
+    {
+        if (vehicles == null || vehicles.Count == 0)
+        {
+            return Task.CompletedTask;
+        }
+
         if (columnName != activeSortColumn)
         {
-            vehicles = vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             isSortedAscending = true;
             activeSortColumn = columnName;
         }
         else
         {
-            if (isSortedAscending)
-            {
-                vehicles = vehicles.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
-            }
-            else
-            {
-                vehicles = vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
-            }
             isSortedAscending = !isSortedAscending;
         }
 
-        SetLocalValue();
+        Func<Vehicle, IComparable> keySelector = columnName switch
+        {
+            "highwayEover100" => v => v.highwayEover100,
+            "rangeHwy" => v => v.rangeHwy,
+            _ => v => v.model
+        };
+
+        vehicles = isSortedAscending
+            ? vehicles.OrderBy(keySelector).ToList()
+            : vehicles.OrderByDescending(keySelector).ToList();
+
+        return Task.CompletedTask;
+    }
+
+    private async Task LoadVehicleCapacities()
+    {
+        try
+        {
+            vehicleCapacities = await hwMilesService.httpClient.GetFromJsonAsync<VehicleCapacity[]>("vehicleCapacities.json");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Failed to load vehicle capacities: {ex.Message}");
+            vehicleCapacities = Array.Empty<VehicleCapacity>();
+        }
     }
 
     async Task SetLocalValue()
@@ -226,6 +399,10 @@ else
         if (localValue != null)
         {
             vehicles = System.Text.Json.JsonSerializer.Deserialize<List<Vehicle>>(localValue);
+        }
+        else
+        {
+            vehicles ??= new List<Vehicle>();
         }
     }
 }

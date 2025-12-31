@@ -12,7 +12,7 @@ builder.Services.AddScoped<LocalStorageService>();
 builder.Services.AddHttpClient<EPAService>(client =>
 {
     client.BaseAddress = new Uri("https://www.fueleconomy.gov");
-    client.DefaultRequestHeaders.Add("accept", "application/json ");
+    client.DefaultRequestHeaders.Add("accept", "application/json");
 });
 
 builder.Services.AddHttpClient<HWMilesService>(client =>

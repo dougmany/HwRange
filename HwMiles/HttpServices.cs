@@ -15,7 +15,7 @@
         }
     }
 
-    class HWMilesService
+    public class HWMilesService
     {
         public readonly HttpClient httpClient;
 

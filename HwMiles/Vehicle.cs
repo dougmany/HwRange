@@ -10,6 +10,8 @@
 
     public class MenuItems
     {
+        [System.Text.Json.Serialization.JsonPropertyName("menuItem")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(SingleOrArrayConverter<MenuItem>))]
         public List<MenuItem> MenuItem { get; set; }
     }
 
@@ -138,6 +140,32 @@
         public String Name { get; set; }
         public Double Capacity { get; set; }
         public int Id { get; set; }
+    }
+
+    // Allows deserializing EPA responses where menuItem can be an object or an array
+    public class SingleOrArrayConverter<T> : System.Text.Json.Serialization.JsonConverter<List<T>>
+    {
+        public override List<T> Read(ref System.Text.Json.Utf8JsonReader reader, Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+        {
+            if (reader.TokenType == System.Text.Json.JsonTokenType.Null)
+            {
+                return new List<T>();
+            }
+
+            if (reader.TokenType == System.Text.Json.JsonTokenType.StartArray)
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<List<T>>(ref reader, options) ?? new List<T>();
+            }
+
+            // Single object case
+            var item = System.Text.Json.JsonSerializer.Deserialize<T>(ref reader, options);
+            return item == null ? new List<T>() : new List<T> { item };
+        }
+
+        public override void Write(System.Text.Json.Utf8JsonWriter writer, List<T> value, System.Text.Json.JsonSerializerOptions options)
+        {
+            System.Text.Json.JsonSerializer.Serialize(writer, value, options);
+        }
     }
 }
 
